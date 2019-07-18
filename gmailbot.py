@@ -134,6 +134,7 @@ def watch_mail():
                     send_message('me', create_message(bot_mail, master_mail, bot_name, 'Stopping notepad.'))
                     Popen(r'taskkill /IM notepad.exe', creationflags=CREATE_NEW_CONSOLE)
                 elif command.lower() == 'update':
+                    # to update the bot, upload new version of this file to the bots google drive and send the command.
                     logger.info('Starting botupdate.')
                     send_message('me', create_message(bot_mail, master_mail, bot_name, 'Starting botupdate.'))
 
@@ -144,7 +145,7 @@ def watch_mail():
                     try:
                         rename(__file__, f"{splitext(__file__)[0]}.BAK")
                     except OSError as e:
-                        logger.info(f"Error: {e}. Aborting to prevent loss of previous version of bot.")
+                        logger.error(f"Error: {e}. Aborting to prevent loss of previous version of bot.")
                         break
 
                     for retry in range(max_retries):
@@ -159,9 +160,11 @@ def watch_mail():
                     update_file = response.get('files')
                     if len(update_file) == 0:
                         logger.info('Found no new update file. Aborting.')
+                        send_message('me', create_message(bot_mail, master_mail, bot_name, 'Found no new update file. Aborting.'))
                         break
                     elif len(update_file) > 1:
                         logger.info('More than one update file. Aborting.')
+                        send_message('me', create_message(bot_mail, master_mail, bot_name, 'More than one update file. Aborting.'))
                         break
 
                     for retry in range(max_retries):
