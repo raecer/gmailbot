@@ -226,7 +226,7 @@ delay_between_mailcommands = 20
 bot_name = 'I was sent from a bot.'  # Used as subject in response emails.
 
 # Necessary to change:
-whitelisted_emails = ("whitelistedemail@gmail.com", )  # Tuple of emailsenders to keep in bots inbox.
+whitelisted_emails = ('sendsmecommands@gmail.com', )  # Tuple of emailsenders to keep in bots inbox. Make sure to add master_mail to this one.
 subject_to_monitor = 'hey listen'  # Emailsubject to monitor.
 bot_mail = 'bottestmail@gmail.com'  # Email with gmail api and drive api activated (recommend new email).
 master_mail = 'sendsmecommands@gmail.com'  # Bot only listens to commands from this email with the subject above.
